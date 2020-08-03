@@ -60,7 +60,8 @@
 				<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-block btn-lg" name="sign_up">Sign Up
 				</button>
-			</div>	
+            </div>
+            <?php include("signup_user.php"); ?>	
 		</form>
 		<div class="text-center small" style="color: #ffffff;">
 			Already have an account? <a href="signup.php" style="color:#ffffff">Sign In</a>
