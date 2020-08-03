@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
 				<label>Username</label>
-				<input type="text" name="user_name" class="form-control" placeholder="Example: dulanjali" autocomplete="off" required>
+				<input type="text" name="name" class="form-control" placeholder="Example: dulanjali" autocomplete="off" required>
             </div>
             <div class="form-group">
 				<label>Password</label>
