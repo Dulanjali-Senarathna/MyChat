@@ -26,7 +26,7 @@ if(isset($_POST["sign_in"]))
 
         $user_name=$row['user_name'];
 
-        echo "<script>window.open('home.php?user_name=$user_name','_self')</script>";
+        echo "<script>window.open('home.php?user_name= $user_name','_self')</script>";
     }
 
     else {
