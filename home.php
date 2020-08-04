@@ -1,10 +1,22 @@
+<?php
+session_start();
+include ("include/connection.php");
+
+if(isset($_SESSION['user_email'])){
+    header("location: signin.php");
+}
+else { ?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>MyChat - Home</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       
+          <link rel="stylesheet" type="text/css" href="css/home.css">
+          <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="container main-section">
@@ -51,14 +63,14 @@
                              $user_profile_image=$row_user['user_profile'];
                          }
 
-                         $total_messages="select * from users_chat where (sender_username='$user_name' AND receiver_isername='$username') OR (receiver_username='$user_name' AND sender_username='$username')";
+                         $total_messages="select * from users_chat where (sender_username='$user_name' AND receiver_username='$username') OR (receiver_username='$user_name' AND sender_username='$username')";
                          $run_messages=mysqli_query($con,$total_messages);
                          $total=mysqli_num_rows($run_messages);
 
                          ?>
                          <div class="col-md-12 right-header">
                             <div class="right-header-img">
-                                <img src="<?php echo"user_profile_image"; ?>">
+                                <img src=<?php echo"user_profile_image"; ?>>
                             </div>
                             <div class="right-header-detail">
                                 <form method="post">
@@ -103,8 +115,8 @@
                                 {
                                     echo "
                                     <li>
-                                    <div class='rightside-chat'>
-                                    <span>$username <small>$msg_date</small></span>
+                                    <div class='rightside-right-chat'>
+                                    <span>$username <small>$msg_date</small></span><br><br>
                                     <p>$msg_content</p>
                                     </div>
                                     </li>
@@ -115,8 +127,8 @@
                                 {
                                     echo "
                                     <li>
-                                    <div class='rightside-chat'>
-                                    <span>$username <small>$msg_date</small></span>
+                                    <div class='rightside-left-chat'>
+                                    <span>$username <small>$msg_date</small></span><br><br>
                                     <p>$msg_content</p>
                                     </div>
                                     </li>
@@ -166,5 +178,19 @@
             }
         }
         ?>
+
+        <script>
+            $('#scrolling_to_bottom').animate({
+                scrollTop: $('#scrolling_to_bottom').get(0).scrollHeight},1000);
+            </script>
+            <script type="text/javascript">
+            $(document).ready(function(){
+                var height = $(window).height();
+                $('.left-chat').css('height',(height-92)+'px');
+                $('.right-header-contentChat').css('height',(height-163)+'px');
+            });
+            
+        </script>
     </body>
 </html>
+    <?php } ?>
